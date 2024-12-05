@@ -1,0 +1,94 @@
+<html lang="en">
+    <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;500;700&amp;display=swap" rel="stylesheet">
+    <title>Caja</title>
+    <link rel="stylesheet" href="./static/shopping.css">
+    <link rel="stylesheet" href="./static/acordeon.css">
+  </head>
+  <body>
+    {% include 'homeBTN.html' %}
+    <main class="my-order">
+      <div class="my-order-container">
+        <h1 class="title">My order</h1>
+        <details id="not-save-orders" open>
+          <summary class="acordeon">Compras no confirmadas</summary>
+          <div class="my-order-content">
+            <div class="order">
+              <p>
+                <span>Artículos</span>
+                <span><span id="total-articles-unsave">0</span> artículos</span>
+              </p>
+              <p>Q <span id="total-spent-unsave">0</span></p>
+            </div>
+          </div>
+        </details>
+        <article class="shopping-cart  unsave" id="unsaved-confimation-container">
+          <div id="inputs-container">
+            <label for="tel">Número de telefono</label>
+            <input id ="tel" type="tel" autocomplete = "tel" pattern="[0-9]{8}" maxlength="8">
+            <label for="email">Correo electronico</label>
+            <input id="email" type="email" autocomplete = "email">
+          </div>
+          <button id="confirmation-button-unsaved" type="submit" value = "Confirmar compra">Confirmar compra</button>
+        </article>
+        <details id="save-items-container">
+          <summary  class="acordeon">Compras confirmadas</summary>
+          <div class="my-order-content">
+            <div class="order">
+              <p>
+                <span>Artículos</span>
+                <span><span id="total-articles-save">0</span> artículos</span>
+              </p>
+              <p>Q <span id="total-spent-save">0</span></p>
+            </div>
+          </div>
+          {% for purchase in confirmedPurchases%}
+          <article class="shopping-cart save">
+            <figure>
+              <img src="{{purchase.link_producto}}" alt="{{purchase.descripcion_producto}}">
+            </figure>
+            <div>
+                <p>Producto:{{purchase.nombre_producto}}</p>
+                <p id="precio-unsaved-2">Precio unitario: Q{{purchase.precio_producto}}</p>
+                <p data-cantidad = {{purchase.cantidad_compra}}>
+                  Cantidad:{{purchase.cantidad_compra}}
+                </p>
+            </div>
+            <p class="title" data-total = {{purchase.cantidad_compra * purchase.precio_producto}}>
+              Q{{purchase.cantidad_compra * purchase.precio_producto}}
+            </p>
+          </article>
+          {%endfor%}
+        </details>
+        <details>
+          <summary class="acordeon">Compras entregadas</summary>
+          {% for purchase in deliveredPurchases%}
+          <article class="shopping-cart delivered">
+            <figure>
+              <img src="{{purchase.link_producto}}" alt="{{purchase.descripcion_producto}}">
+            </figure>
+            <div>
+                <p>Producto:{{purchase.nombre_producto}}</p>
+                <p id="precio-unsaved-2">Precio unitario: Q{{purchase.precio_producto}}</p>
+                <p id="cantidad-unsaved-2">Cantidad:{{purchase.cantidad_compra}}</p>
+            </div>
+            <p>Q{{purchase.cantidad_compra * purchase.precio_producto}}</p>
+          </article>
+          {%endfor%}
+
+        </details>
+        </div>
+      </div>
+    </main>
+    <script src="./static/shopping.js"></script>
+    <script src="./static/shoppingBTN.js"></script>
+    <script src="./static/shoppingSavedSum.js"></script>
+    <script src="./static/shoppingConfirmation.js"></script>
+    <script src="./static/setId.js"></script>
+
+  </body></html>

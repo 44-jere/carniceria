@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./static/styles.css">
+  <link rel="stylesheet" href="./static/diseñoBtn.css">
+  <title>Carniceria virtual</title>
+</head>
+<body>
+
+  {% include 'shoppingCard.html' %}
+
+    <main>
+        <ul class='slider'>
+          {% for producto in prooductos %}
+          <li class='item' style="background-image: url('{{producto.link}}')">
+            <div class='content'>
+              <h2 class='title'>{{producto.nombre}}</h2>
+              <p class='description'>
+                {{producto.descripcion}}
+              </p>
+              <a class="about-btn" href="/details?q={{producto.id}}">comprar</a>
+            </div>
+          </li>
+          {% endfor %}
+        </ul>
+        <nav class='nav'>
+          <ion-icon class='btn prev' name="arrow-back-outline"></ion-icon>
+          <ion-icon class='btn next' name="arrow-forward-outline"></ion-icon>
+        </nav>
+      </main>
+      <script src="./static/shoppingCardCount.js"></script>
+      <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+      <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+      <script src="./static/main.js"></script>
+      <script src="./static/swipe.js"></script>
+      <script src="./static/setId.js"></script>
+</body>
+</html>

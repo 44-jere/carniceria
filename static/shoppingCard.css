@@ -1,0 +1,26 @@
+.navbar-shopping-cart {
+    right: 9px;
+    top: 7px;
+    position: absolute;
+    z-index: 100;
+}
+.navbar-shopping-cart div {
+  width: 16px;
+  height: 16px;
+  background-color: #ACD9B2;
+  border-radius: 50%;
+  font-size: var(--sm);
+  font-weight: bold;
+  position: absolute;
+  top: -6px;
+  right: -3px;
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+.navbar-shopping-cart svg{
+    width: 30px;
+    height: 30px;
+    color:white;
+}
+

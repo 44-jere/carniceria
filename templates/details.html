@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{producto.nombre}}</title>
+    <link rel="stylesheet" href="./static/diseñoBtn.css">
+    <link rel="stylesheet" href="./static/detailStyle.css">
+    <link rel="stylesheet" href="./static/shoppingCard.css">
+</head>
+<body>
+
+    {% include 'shoppingCard.html' %}
+    {% include 'homeBTN.html' %}
+
+    <main>
+        <section class="image-container" class="price-container" style="background-image: url('https://img.freepik.com/fotos-premium/papel-arrugado-naranja-vista-cercana_319172-977.jpg')">
+            <article style="background-image: url('{{producto.link}}')" id="producto-imagen" data-imagen = "{{producto.link}}">
+            </article>
+        </section>
+        <section class="price-container" style="background-image: url('https://media.istockphoto.com/id/1635397195/es/vector/papel-reciclado-con-textura-de-color-negro-en-blanco-vac%C3%ADo-con-efecto-grunge-arrugado-fondos.jpg?s=612x612&w=0&k=20&c=SoScckS-VVWzlQ0Jdsbk6GwD5rYpaY7nm-RRBx1vyp8=')">
+            <article id="pk" data-pk = {{producto.id}}>
+                <h2 id="producto">{{producto.nombre}}</h2>
+                <p>precio: Q<span id="precio">{{producto.precio}}</span> por <span id="unidad">{{producto.unidad}}</span></p>
+                <div class="buttons-container">
+                    <div id="quantity-container">
+                        <label for="quantity">¿cuantas quieres?</label>
+                        <input id="quantity" type = "number" min = 0 value = 0 step="1">
+                    </div>
+                    <a id="submitBTN" class = "comprar-btn about-btn">  Añadir al carrito</a>
+                </div>
+            </article>
+        </section>
+    </main>
+    <section class="ingredientes">
+        <article>
+            <h2>Descripción</h2>
+            <p>{{producto.descripcion}}</p>
+        </article>
+    </section>
+    <script src="./static/shoppingCardCount.js"></script>
+    <script src="./static/savePurchase.js"></script>
+    <script src="./static/setId.js"></script>
+</body>
+</html>

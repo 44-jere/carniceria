@@ -1,0 +1,10 @@
+#home-btn{
+    font-size: 1.9rem;
+    left: 9px;
+    top: 7px;
+    position: absolute;
+    z-index: 100;
+}
+#home-btn{
+    color:white;
+}
