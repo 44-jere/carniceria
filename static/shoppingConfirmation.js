@@ -32,12 +32,24 @@ function saveToLocalStorage(key, data) {
     console.log(`Dato guardado con la clave '${key}': ${data}`);
 }
 function addEmail(email){
-    if(validateEmail(email)) saveToLocalStorage("email", email)
-    else alert("email no valido")
+    if(validateEmail(email)){
+        saveToLocalStorage("email", email)
+        return true
+    }
+    else {
+        alert("email no valido")
+        return false
+    }
 }
 function addPhone(phone){
-    if(validatePhone(phone)) saveToLocalStorage("phone", phone)
-    else  alert("Teléfono no valido")
+    if(validatePhone(phone)){
+        saveToLocalStorage("phone", phone)
+        return true
+    }
+    else  {
+        alert("Teléfono no valido")
+        return false
+    }
 }
 const phone = getFromLocalStorage("phone")
 const email = getFromLocalStorage("email")
@@ -92,13 +104,13 @@ function sendToDB(){
 
 }
 function updateUserInfo(){
-    if(!email) addEmail(mailInput.value)
-    if(!phone) addPhone(phoneInput.value)
-    if(email !== mailInput.value) addEmail(mailInput.value)
-    if(phone !== phoneInput.value) addPhone(phoneInput.value)
+    if(!email) return addEmail(mailInput.value)
+    if(!phone) return addPhone(phoneInput.value)
+    if(email !== mailInput.value) return addEmail(mailInput.value)
+    if(phone !== phoneInput.value) return addPhone(phoneInput.value)
 }
 function confirmPurchase(){
-    updateUserInfo()
+    if(!updateUserInfo()) return
     const response = sendToDB()
     if(response) return false
 
