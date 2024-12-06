@@ -104,13 +104,19 @@ function sendToDB(){
 
 }
 function updateUserInfo(){
-    if(!email) return addEmail(mailInput.value)
-    if(!phone) return addPhone(phoneInput.value)
-    if(email !== mailInput.value) return addEmail(mailInput.value)
-    if(phone !== phoneInput.value) return addPhone(phoneInput.value)
+    if(!email || !phone){
+        addEmail(mailInput.value)
+        addPhone(phoneInput.value)
+        return
+    }
+    if(email !== mailInput.value) addEmail(mailInput.value)
+    if(phone !== phoneInput.value) addPhone(phoneInput.value)
 }
 function confirmPurchase(){
-    if(!updateUserInfo()) return
+    updateUserInfo()
+    if(mailInput.value == "") return
+    if(phoneInput.value == "") return
+
     const response = sendToDB()
     if(response) return false
 
